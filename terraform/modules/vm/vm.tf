@@ -20,7 +20,7 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
   network_interface_ids = [azurerm_network_interface.myterraformnic.id]
   admin_ssh_key {
     username   = "${var.user_name}"
-    public_key = "${file("id_rsa.pub_secure")}"
+    public_key = "${file("$AGENT_TEMPDIRECTORY/id_rsa.pub")}"
   }
 
   os_disk {
