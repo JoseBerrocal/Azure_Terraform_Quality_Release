@@ -1,0 +1,65 @@
+name: Azure Pipelines
+variables:
+  python.version: '3.7.6'
+stages:
+- stage: Build
+  jobs:
+  - job: Build
+    pool:
+      name: Hosted Ubuntu 1604
+    steps:
+    # Needed for Terraform VM deployment
+    - task: InstallSSHKey@0
+      inputs:
+        knownHostsEntry: '52.255.162.168 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBDS40Hm9WI5u+BTkUdwuvj4ujBbmApN25+KTeyMIBzEhbxAjfyqk7TMcfOmR7UDs/RpK9b8FO0I8L/XXSMA2IVE='
+        sshPublicKey: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDFW1r1Ob7uO7nDPxqFiP2E9QxcTN/Zoz6cvHA1kcFrgeoCO+9OzuJ0ai0es/juh9Su74sK6afPrK8X+nl4LvYWtRP9jsDQaKt6ZmB/NgnFhi/zXiImQ4SMAnpjmAJZLIi/T7K9t+XKlMiE6dSs+5arloNP5G7HywU4eEGGkfwyvlchw4m1/n1pzfKZn/mWO/Mi8UJE8bzqkblJtOD23L04cAjFG4LIcvkDnImm3d3hcihbPK2OILyspCXCwBlSesol7KUDvb+f3LY/bNuAlNW1oq/zjUM0RwYcHu5StbmrORQDhuwUkSy9tWkRzUE2kMAaa2HVnzyukGgkjUvvUgPxLve459V3+xWf8ZlGizuItnQcU128B+p+EAIJeHIvmyKIa3/4rLMMylrnaUCVDOYFn8QMAOkuojI0BEx2J/ZOJUCQ1HJM5VWgCVFsJnxH6tGiPzaH1duDqlc1k0940fId9I1ONIkWrjBGxkJUXzNog+XNpXH99rD8I9BHXNs1WlanOBi6vc0Zo0xBbu9SZI4FAOIWNvYs24BdPphdT1cMDmBCTE57vfAI10Pav4PSIBnk3LJ6b06zehq9wBIoEtYyQifklJ0bi7/jTfl47+9xt35JE2hZ7/3UNfzZUKruBmXumrKsNh9KQK6au1rF/9G/shTPXo6wE7+alq8qYGrJGQ== casita@localhost.localdomain'
+        sshKeySecureFile: 'id_rsa'
+    - task: ArchiveFiles@2
+      displayName: 'Archive FakeRestAPI'
+      inputs:
+        rootFolderOrFile: 'StarterAPIs.json'
+        includeRootFolder: false
+        archiveType: 'zip'
+        archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip'
+    - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip
+      displayName: 'Upload Package'
+      artifact: drop-fakerestapi
+- stage:
+  jobs:
+  - deployment: FakeRestAPI
+    pool:
+      vmImage: 'Ubuntu-16.04'
+    environment: 'VM-Project_Deployment'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: AzureWebApp@1
+            displayName: 'Deploy Azure Web App'
+            inputs:
+              azureSubscription: 'Azure_Subscription'
+              appName: 'ProjectAzureJBmyApplicationTest-AppService'
+              appType: webApp
+              package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip
+  - deployment: VMDeploy
+    displayName: NAME
+    environment:
+      name:  'VM-Project_Deployment'
+      resourceType: VirtualMachine
+      tags: VM1
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: Bash@3
+            inputs:
+              targetType: 'inline'
+              script: |
+                #! /bin/bash
+              
+                sudo apt-get upgrade -y
+                sudo apt-get install python3-pip -y
+                sudo apt-get install unzip -y
+                sudo apt-get install -y chromium-browser
+                pip3 install selenium
+                export PATH=$PATH:some/path
