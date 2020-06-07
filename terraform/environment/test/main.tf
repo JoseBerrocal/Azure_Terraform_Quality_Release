@@ -19,7 +19,7 @@ module "resource_group" {
   location             = "${var.location}"
 }
 module "network" {
-  source               = "https://dev.azure.com/joseberrocaludacity1/Udacity_Project_Ensuring_Quality_Release/_git/Azure_Project_Quality_Release.git?path=%2Fterraform%2Fmodules%2Fnetwork"
+  source               = "../../modules/network"
   address_space        = "${var.address_space}"
   location             = "${var.location}"
   virtual_network_name = "${var.virtual_network_name}"
