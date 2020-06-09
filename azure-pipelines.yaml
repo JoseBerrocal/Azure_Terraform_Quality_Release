@@ -54,7 +54,7 @@ stages:
       displayName: 'Run Postman'
       inputs:
         script: 'npm run StarterAPIs.json'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/automatedtesting/postman/'
+        workingDirectory: 'automatedtesting/postman/'
 
 # FINISH POSTMAN
 
