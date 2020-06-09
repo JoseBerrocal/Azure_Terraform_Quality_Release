@@ -56,7 +56,7 @@ stages:
       displayName: 'Run Postman'
       inputs:
         script: 'newman run StarterAPIs.json --reporters cli,junit --reporter-junit-export Results\junitReport.xml'
-        workingDirectory: '$(Build.SourcesDirectory)/automatedtesting/postman/'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/automatedtesting/postman/'
 
 # FINISH POSTMAN
 
