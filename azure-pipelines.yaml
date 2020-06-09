@@ -57,7 +57,7 @@ stages:
       inputs:
         command: 'custom'
         workingDir: '$(System.DefaultWorkingDirectory)/automatedtesting/postman/'
-        customCommand: 'newman run StarterAPIs.json --reporters cli,junit --reporter-junit-export Results\junitReport.xml'
+        customCommand: 'newman run StarterAPIs.json'
 
 # FINISH POSTMAN
 
