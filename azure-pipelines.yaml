@@ -24,7 +24,35 @@ stages:
     - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip
       displayName: 'Upload Package'
       artifact: drop-fakerestapi
-- stage:
+
+# INCLUDING POSTMAN
+    - task: Npm@1
+      displayName: 'Install newman'
+      inputs:
+        command: custom
+        verbose: false
+        customCommand: 'install newman'
+
+    - task: Bash@3
+      displayName: 'get some values'
+      inputs:
+        targetType: 'inline'
+        script: |
+          echo "Aqui esta ubicado el archivo json"
+          locate StarterAPIs.json
+          echo "El valor de la carpeta build"
+          echo $(Build.SourcesDirectory)
+          echo "El valor de la carpeta system default direcotry"
+          echo $(System.DefaultWorkingDirectory)
+          locate _Azure_Project_Quality_Release.git
+          echo "Aqui esta la carpeta del repositorio"
+          ls -lRtha
+        workingDirectory: '$(System.DefaultWorkingDirectory)'
+
+# FINISH POSTMAN
+
+
+- stage: Deployment
   jobs:
   - deployment: FakeRestAPI
     pool:
@@ -37,16 +65,16 @@ stages:
           - task: AzureWebApp@1
             displayName: 'Deploy Azure Web App'
             inputs:
-              azureSubscription: 'Azure_subscription_1'
+              azureSubscription: 'Azure subscription 1 (a1b378f5-e11a-41ae-9661-917c3e0195cc)'
               appName: 'ProjectAzureJBmyApplicationTest-AppService'
               appType: webApp
               package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip
   - deployment: VMDeploy
-    displayName: NAME
+    displayName: Configure VM
     environment:
       name:  'VM-Project_Deployment'
       resourceType: VirtualMachine
-      tags: VM1
+      tags: VM2
     strategy:
       runOnce:
         deploy:
@@ -61,5 +89,10 @@ stages:
                 sudo apt-get install python3-pip -y
                 sudo apt-get install unzip -y
                 sudo apt-get install -y chromium-browser
+                echo "Chromium-Browser Installed"
                 pip3 install selenium
+                echo "Selenium Installed"
                 export PATH=$PATH:some/path
+                echo "Output of PATH"
+                echo $PATH
+                echo "Hello World this works"
