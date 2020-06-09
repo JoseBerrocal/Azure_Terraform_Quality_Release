@@ -63,8 +63,8 @@ stages:
     - task: CmdLine@2
       displayName: 'Run Postman'
       inputs:
-        script: 'newman run $(System.DefaultWorkingDirectory)/automatedtesting/postman/StarterAPIs.json'
-#        workingDirectory: 'automatedtesting/postman/'
+        script: 'newman run StarterAPIs.json'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/automatedtesting/postman/'
 
 # FINISH POSTMAN
 
