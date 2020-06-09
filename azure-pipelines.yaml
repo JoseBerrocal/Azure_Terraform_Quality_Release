@@ -53,12 +53,11 @@ stages:
 
 
     - task: Npm@1
-      displayName: 'Run Postman for real'
+      displayName: 'Run Postman for real'    
       inputs:
-        command: 'ci'
+        command: 'custom'
         workingDir: '$(System.DefaultWorkingDirectory)/automatedtesting/postman/'
-        customRegistry: 'useFeed'
-        customFeed: '39952366-36cd-484f-b66b-10fb786adc8d'
+        customCommand: 'newman run StarterAPIs.json --reporters cli,junit --reporter-junit-export Results\junitReport.xml'
 
 # FINISH POSTMAN
 
