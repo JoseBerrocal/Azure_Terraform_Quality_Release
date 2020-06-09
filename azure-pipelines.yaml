@@ -26,12 +26,20 @@ stages:
       artifact: drop-fakerestapi
 
 # INCLUDING POSTMAN
-    - task: Npm@1
+#    - task: Npm@1
+#      displayName: 'Install newman'
+#      inputs:
+#        command: custom
+#        verbose: false
+#        customCommand: 'install newman'
+
+    - task: Bash@3
       displayName: 'Install newman'
       inputs:
-        command: custom
-        verbose: false
-        customCommand: 'install newman'
+        targetType: 'inline'
+        script: |
+          sudo npm install -g newman
+          pwd
 
     - task: Bash@3
       displayName: 'get some values'
@@ -49,6 +57,8 @@ stages:
           pwd
           echo "El pwd"
         workingDirectory: '$(System.DefaultWorkingDirectory)'
+
+
 
     - task: CmdLine@2
       displayName: 'Run Postman'
