@@ -51,13 +51,11 @@ stages:
           ls -lRtha
         workingDirectory: '$(System.DefaultWorkingDirectory)'
 
-
-    - task: Npm@1
-      displayName: 'Run Postman for real'    
+    - task: CmdLine@2
+      displayName: 'Run Postman'
       inputs:
-        command: 'custom'
-        workingDir: '$(System.DefaultWorkingDirectory)/automatedtesting/postman/'
-        customCommand: 'newman run StarterAPIs.json'
+        script: 'newman run StarterAPIs.json'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/automatedtesting/postman/'
 
 # FINISH POSTMAN
 
