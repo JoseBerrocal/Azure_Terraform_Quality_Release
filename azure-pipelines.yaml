@@ -53,8 +53,8 @@ stages:
     - task: CmdLine@2
       displayName: 'Run Postman'
       inputs:
-        script: 'npm run StarterAPIs.json'
-        workingDirectory: 'automatedtesting/postman/'
+        script: 'npm run $(System.DefaultWorkingDirectory)/automatedtesting/postman/StarterAPIs.json'
+#        workingDirectory: 'automatedtesting/postman/'
 
 # FINISH POSTMAN
 
