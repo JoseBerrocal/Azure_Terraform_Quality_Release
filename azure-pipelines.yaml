@@ -48,13 +48,12 @@ stages:
           echo "Aqui esta la carpeta del repositorio"
           pwd
           echo "El pwd"
-          ls -lRtha
         workingDirectory: '$(System.DefaultWorkingDirectory)'
 
     - task: CmdLine@2
       displayName: 'Run Postman'
       inputs:
-        script: 'npm run StarterAPIs.json --reporters cli,junit --reporter-junit-export Results\junitReport.xml'
+        script: 'npm run StarterAPIs.json'
         workingDirectory: '$(System.DefaultWorkingDirectory)/automatedtesting/postman/'
 
 # FINISH POSTMAN
