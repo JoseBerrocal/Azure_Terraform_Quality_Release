@@ -52,12 +52,6 @@ stages:
         workingDirectory: '$(System.DefaultWorkingDirectory)'
 
 
-    - task: CmdLine@2
-      displayName: 'Run Postman'
-      inputs:
-        script: 'newman run StarterAPIs.json --reporters cli,junit --reporter-junit-export Results\junitReport.xml'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/automatedtesting/postman/'
-
     - task: Npm@1
       displayName: 'Run Postman for real'
       inputs:
