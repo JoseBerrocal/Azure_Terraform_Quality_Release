@@ -58,6 +58,14 @@ stages:
         script: 'newman run StarterAPIs.json --reporters cli,junit --reporter-junit-export Results\junitReport.xml'
         workingDirectory: '$(System.DefaultWorkingDirectory)/automatedtesting/postman/'
 
+    - task: Npm@1
+      displayName: 'Run Postman for real'
+      inputs:
+        command: 'ci'
+        workingDir: '$(System.DefaultWorkingDirectory)/automatedtesting/postman/'
+        customRegistry: 'useFeed'
+        customFeed: '39952366-36cd-484f-b66b-10fb786adc8d'
+
 # FINISH POSTMAN
 
 
