@@ -46,6 +46,8 @@ stages:
           echo $(System.DefaultWorkingDirectory)
           locate _Azure_Project_Quality_Release.git
           echo "Aqui esta la carpeta del repositorio"
+          pwd
+          echo "El pwd"
           ls -lRtha
         workingDirectory: '$(System.DefaultWorkingDirectory)'
 
