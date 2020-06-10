@@ -148,6 +148,10 @@ stages:
                 pwd
                 echo "Hello World this works"
                 ls -lrtaR
+                sudo su
+                updatedb
+                cd /
+                ls -rlthaR
                 #python $(System.DefaultWorkingDirectory)/automatedtesting/selenium/login.py
                 
                 
