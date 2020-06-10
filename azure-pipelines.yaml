@@ -83,8 +83,6 @@ stages:
               appType: webApp
               package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip
 
-
-
   - deployment: VMDeploy
     displayName: Configure VM
     environment:
@@ -121,8 +119,8 @@ stages:
       inputs:
         sshEndpoint: 'Connect to VM-Project'
         sourceFolder: ''
-        targetFolder: '$(System.DefaultWorkingDirectory)/'
-        contents: '*'
+        targetFolder: ''
+        contents: '*/*/*py*'
         readyTimeout: '20000'
 
 #The Selelium Test
