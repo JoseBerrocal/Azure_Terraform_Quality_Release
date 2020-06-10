@@ -109,7 +109,7 @@ stages:
 
 #The Selelium Test
   - deployment: VMDeploy
-    displayName: Configure VM
+    displayName: The Selenium Test
     environment:
       name:  'VM-Project_Deployment'
       resourceType: VirtualMachine
