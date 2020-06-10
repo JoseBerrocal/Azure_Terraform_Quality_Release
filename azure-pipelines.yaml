@@ -84,6 +84,7 @@ stages:
               package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip
 
 
+
   - deployment: VMDeploy
     displayName: Configure VM
     environment:
@@ -112,7 +113,17 @@ stages:
                 echo $PATH
                 echo "Hello World this works"
 
-
+  - job: CopyFiles
+    steps:
+    # Needed 
+    - task: CopyFilesOverSSH@0
+      displayName: 'Copy files to VM'
+      inputs:
+        sshEndpoint: 'Connect to VM-Project'
+        sourceFolder: ''
+        targetFolder: '$(System.DefaultWorkingDirectory)/'
+        contents: '*'
+        readyTimeout: '20000'
 
 #The Selelium Test
   - deployment: SeleniumTest
@@ -126,14 +137,7 @@ stages:
         deploy:
           steps:
 
-          - task: CopyFilesOverSSH@0
-            displayName: 'Copy files to VM'
-            inputs:
-              sshEndpoint: 'Connect to VM-Project'
-              sourceFolder: ''
-              targetFolder: '$(System.DefaultWorkingDirectory)/'
-              contents: '*'
-              readyTimeout: '20000'
+
 
 
           - task: Bash@3
