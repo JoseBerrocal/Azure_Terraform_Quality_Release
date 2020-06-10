@@ -147,7 +147,8 @@ stages:
               
                 pwd
                 echo "Hello World this works"
-                python $(System.DefaultWorkingDirectory)/automatedtesting/selenium/login.py
+                ls -lrtaR
+                #python $(System.DefaultWorkingDirectory)/automatedtesting/selenium/login.py
                 
                 
                 
