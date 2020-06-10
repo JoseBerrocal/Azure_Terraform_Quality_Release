@@ -147,6 +147,7 @@ stages:
               
                 pwd
                 echo "Hello World this works"
+                pip3 install selenium
                 python /home/casita/automatedtesting/selenium/login.py
                 
                 
