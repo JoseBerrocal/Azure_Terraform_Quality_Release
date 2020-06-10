@@ -130,7 +130,7 @@ stages:
             displayName: 'Copy files to VM'
             inputs:
               sshEndpoint: 'Connect to VM-Project'
-              sourceFolder: '$(Build.SourcesDirectory)/automatedtesting/selenium/'
+              sourceFolder: '/home/vsts/work/1/s/automatedtesting/selenium/'
               targetFolder: '$(System.DefaultWorkingDirectory)/'
               contents: '*py*'
               readyTimeout: '20000'
@@ -142,9 +142,9 @@ stages:
               script: |
                 #! /bin/bash
               
-                echo $PATH
+                pwd
                 echo "Hello World this works"
-                python $(System.DefaultWorkingDirectory)/automatedtesting/selenium/login.py
+                python $(System.DefaultWorkingDirectory)/login.py
                 
                 
                 
