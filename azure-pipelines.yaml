@@ -147,8 +147,9 @@ stages:
               
                 pwd
                 echo "Hello World this works"
-                pip3 install selenium
-                python /home/casita/automatedtesting/selenium/login.py
+                wget https://chromedriver.storage.googleapis.com/81.0.4044.138/chromedriver_linux64.zip
+                unzip chromedriver_linux64.zip
+                python3 /home/casita/automatedtesting/selenium/login.py
                 
                 
                 
