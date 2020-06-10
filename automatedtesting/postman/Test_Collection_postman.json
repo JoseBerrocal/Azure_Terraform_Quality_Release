@@ -37,8 +37,8 @@
 					"script": {
 						"id": "e653b3df-b4b0-46e5-bc62-fa6d69f649bc",
 						"exec": [
-							"var jsonDataa = pm.response.json();",
-							"pm.environment.set(\"user_id\", jsonDataa.data._id);"
+							"var jsonData = pm.response.json();",
+							"pm.environment.set(\"user_id\", jsonData.data.records._id);"
 						],
 						"type": "text/javascript"
 					}
