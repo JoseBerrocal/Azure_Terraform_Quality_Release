@@ -37,10 +37,9 @@
 					"script": {
 						"id": "e653b3df-b4b0-46e5-bc62-fa6d69f649bc",
 						"exec": [
-							"var jsonData = pm.response.json();",
-							"var datan = jsonData.data[0];",
-							"var idn = datan.first_name;",
-							"pm.environment.set(\"user_id\", idn);"
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
 						],
 						"type": "text/javascript"
 					}
