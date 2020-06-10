@@ -1,0 +1,116 @@
+{
+	"info": {
+		"_postman_id": "42b9c54e-ccab-4a19-a8f3-983b2b829f24",
+		"name": "Test_Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET All Users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/?page={{page}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "{{page}}"
+						}
+					]
+				},
+				"description": "https://jsonmonk.com/api/v1/users?page=1"
+			},
+			"response": []
+		},
+		{
+			"name": "Create User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e653b3df-b4b0-46e5-bc62-fa6d69f649bc",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"pm.environment.set(\"user_id\", jsonData.data._id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"first_name\":\"{{first_name}}\",\n\t\"last_name\":\"{{last_name}}\",\n\t\"email\": \"{{email}}\",\n\t\"mobile_no\":\"{{mobile_no}}\",\n\t\"password\":\"{{password}}\"\n\t\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}",
+					"host": [
+						"{{url}}"
+					]
+				},
+				"description": "\nhttps://jsonmonk.com/api/v1/users?first_name=Jose&last_name=Berrocal&email=jose.berrocal@test.com&mobile_no=987654123&password=password"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Specific User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "17692b5a-155d-4ecc-8a5c-1424d953b27d",
+						"exec": [
+							"user_id = pm.environment.get(\"user_id\");",
+							"pm.test(\"The user_id was created\", function () {",
+							"    pm.expect(pm.response.text()).to.include(user_id);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/{{user_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"{{user_id}}"
+					]
+				},
+				"description": "https://jsonmonk.com/api/v1/users/?id=5e315fbcd4c4734c3e4fdc1e"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
