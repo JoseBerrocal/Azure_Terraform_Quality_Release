@@ -41,7 +41,7 @@
 							"    pm.response.to.have.status(200);",
 							"});",
 							"var jsonData = pm.response.json();",
-							"print(jsonData);"
+							"js_var jsonData;"
 						],
 						"type": "text/javascript"
 					}
