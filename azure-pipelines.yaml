@@ -131,7 +131,7 @@ stages:
             inputs:
               sshEndpoint: 'Connect to VM-Project'
               targetFolder: '$(System.DefaultWorkingDirectory)/'
-              contents: '*/*/*py*'
+              contents: '**'
               readyTimeout: '20000'
               
           - task: Bash@3
