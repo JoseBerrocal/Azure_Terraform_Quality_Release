@@ -113,9 +113,6 @@ stages:
 
 
 
-
-
-
 #The Selelium Test
   - deployment: SeleniumTest
     displayName: The Selenium Test
@@ -127,14 +124,16 @@ stages:
       runOnce:
         deploy:
           steps:
+
           - task: CopyFilesOverSSH@0
             displayName: 'Copy files to VM'
             inputs:
               sshEndpoint: 'Connect to VM-Project'
-              sourceFolder: 'automatedtesting/selenium/'
+              sourceFolder: '$(Build.SourcesDirectory)/automatedtesting/selenium/'
+              targetFolder: '$(System.DefaultWorkingDirectory)/'
               contents: '*py*'
               readyTimeout: '20000'
-
+              
           - task: Bash@3
             displayName: The Selenium Test Test
             inputs:
