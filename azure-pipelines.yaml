@@ -130,9 +130,8 @@ stages:
             displayName: 'Copy files to VM'
             inputs:
               sshEndpoint: 'Connect to VM-Project'
-              sourceFolder: '/home/vsts/work/1/s/automatedtesting/selenium/'
               targetFolder: '$(System.DefaultWorkingDirectory)/'
-              contents: '*py*'
+              contents: '*/*/*py*'
               readyTimeout: '20000'
               
           - task: Bash@3
