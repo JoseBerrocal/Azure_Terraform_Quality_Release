@@ -130,10 +130,12 @@ stages:
             displayName: 'Copy files to VM'
             inputs:
               sshEndpoint: 'Connect to VM-Project'
+              sourceFolder: ''
               targetFolder: '$(System.DefaultWorkingDirectory)/'
-              contents: '**'
+              contents: '*'
               readyTimeout: '20000'
-              
+
+
           - task: Bash@3
             displayName: The Selenium Test Test
             inputs:
