@@ -39,7 +39,7 @@
 						"exec": [
 							"var jsonData = pm.response.json();",
 							"var datan = jsonData.data;",
-							"var idn = daten._id;",
+							"var idn = datan._id;",
 							"pm.environment.set(\"user_id\", idn);"
 						],
 						"type": "text/javascript"
