@@ -108,7 +108,7 @@ stages:
                 echo "Hello World this works"
 
 #The Selelium Test
-  - deployment: Selenium Test
+  - deployment: SeleniumTest
     displayName: The Selenium Test
     environment:
       name:  'VM-Project_Deployment'
