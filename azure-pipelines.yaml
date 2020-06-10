@@ -52,6 +52,7 @@ stages:
           echo "Aqui esta la carpeta del repositorio"
           pwd
           echo "El pwd"
+          ls -lrthaR
         workingDirectory: '$(System.DefaultWorkingDirectory)'
 
     - task: CmdLine@2
