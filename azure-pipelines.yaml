@@ -112,6 +112,8 @@ stages:
                 echo "Hello World this works"
 
   - job: CopyFiles
+    pool:
+      vmImage: 'Ubuntu-16.04'  
     steps:
     # Needed 
     - task: CopyFilesOverSSH@0
@@ -136,8 +138,6 @@ stages:
           steps:
 
 
-
-
           - task: Bash@3
             displayName: The Selenium Test Test
             inputs:
@@ -147,7 +147,7 @@ stages:
               
                 pwd
                 echo "Hello World this works"
-                python $(System.DefaultWorkingDirectory)/login.py
+                python $(System.DefaultWorkingDirectory)/automatedtesting/selenium/login.py
                 
                 
                 
