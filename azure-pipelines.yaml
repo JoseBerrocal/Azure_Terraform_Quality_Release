@@ -2,6 +2,9 @@ name: Azure Pipelines
 variables:
   python.version: '3.7.6'
 stages:
+
+#BUILS STAGE
+############
 - stage: Build
   jobs:
   - job: Build
@@ -59,7 +62,8 @@ stages:
 
 # FINISH POSTMAN
 
-
+#DEPLOY STAGE
+#############
 - stage: Deployment
   jobs:
   - deployment: FakeRestAPI
@@ -107,6 +111,11 @@ stages:
                 echo $PATH
                 echo "Hello World this works"
 
+
+
+
+
+
 #The Selelium Test
   - deployment: SeleniumTest
     displayName: The Selenium Test
@@ -118,7 +127,16 @@ stages:
       runOnce:
         deploy:
           steps:
+          - task: CopyFilesOverSSH@0
+            displayName: 'Copy files to VM'
+            inputs:
+              sshEndpoint: 'Connect to VM-Project'
+              sourceFolder: '$(System.DefaultWorkingDirectory)/automatedtesting/selenium/'
+              contents: '*py*'
+              readyTimeout: '20000'
+
           - task: Bash@3
+            displayName: The Selenium Test Test
             inputs:
               targetType: 'inline'
               script: |
@@ -127,3 +145,7 @@ stages:
                 echo $PATH
                 echo "Hello World this works"
                 python $(System.DefaultWorkingDirectory)/automatedtesting/selenium/login.py
+                
+                
+                
+                
