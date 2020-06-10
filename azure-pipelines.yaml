@@ -146,6 +146,7 @@ stages:
                 #! /bin/bash
               
                 pwd
+                pwd
                 echo "Hello World this works"
                 wget https://chromedriver.storage.googleapis.com/81.0.4044.138/chromedriver_linux64.zip
                 unzip chromedriver_linux64.zip
