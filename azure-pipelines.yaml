@@ -26,13 +26,6 @@ stages:
       artifact: drop-fakerestapi
 
 # INCLUDING POSTMAN
-#    - task: Npm@1
-#      displayName: 'Install newman'
-#      inputs:
-#        command: custom
-#        verbose: false
-#        customCommand: 'install newman'
-
     - task: Bash@3
       displayName: 'Install newman'
       inputs:
@@ -57,8 +50,6 @@ stages:
           pwd
           echo "El pwd"
         workingDirectory: '$(System.DefaultWorkingDirectory)'
-
-
 
     - task: CmdLine@2
       displayName: 'Run Postman'
@@ -86,6 +77,8 @@ stages:
               appName: 'ProjectAzureJBmyApplicationTest-AppService'
               appType: webApp
               package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip
+
+
   - deployment: VMDeploy
     displayName: Configure VM
     environment:
@@ -113,3 +106,24 @@ stages:
                 echo "Output of PATH"
                 echo $PATH
                 echo "Hello World this works"
+
+#The Selelium Test
+  - deployment: VMDeploy
+    displayName: Configure VM
+    environment:
+      name:  'VM-Project_Deployment'
+      resourceType: VirtualMachine
+      tags: VM2
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: Bash@3
+            inputs:
+              targetType: 'inline'
+              script: |
+                #! /bin/bash
+              
+                echo $PATH
+                echo "Hello World this works"
+                python $(System.DefaultWorkingDirectory)/automatedtesting/selenium/login.py
