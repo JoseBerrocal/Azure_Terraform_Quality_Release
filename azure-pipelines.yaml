@@ -63,7 +63,7 @@ stages:
     - task: CmdLine@2
       displayName: 'Run Postman'
       inputs:
-        script: 'newman run StarterAPIs_2nd.json -e Environment_Project_StarterAPIs.json --reporters cli,junit --reporter-junit-export Results\junitReport.xml'
+        script: 'newman run Test_Collection_postman.json -e Env_Test_Collection_postman.json --reporters cli,junit --reporter-junit-export Results\junitReport.xml'
         workingDirectory: '$(System.DefaultWorkingDirectory)/automatedtesting/postman/'
 
 # FINISH POSTMAN
