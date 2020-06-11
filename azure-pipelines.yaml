@@ -112,32 +112,3 @@ stages:
                 echo $PATH
                 echo "Hello World this works"
 
-          - task: CopyFilesOverSSH@0
-            displayName: 'Copy files to VM'
-            inputs:
-              sshEndpoint: 'Connect to VM-Project'
-              sourceFolder: ''
-              targetFolder: ''
-              contents: '*/*/*py*'
-              readyTimeout: '20000'
-
-
-#The Selelium Test
-
-          - task: Bash@3
-            displayName: 'The Selenium Test Test'
-            inputs:
-              targetType: 'inline'
-              script: |
-                #! /bin/bash
-              
-                pwd
-                pwd
-                echo "Hello World this works"
-                wget https://chromedriver.storage.googleapis.com/81.0.4044.138/chromedriver_linux64.zip
-                unzip chromedriver_linux64.zip
-                python3 /home/casita/automatedtesting/selenium/login.py
-                
-                
-                
-                
