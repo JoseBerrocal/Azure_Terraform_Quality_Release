@@ -111,9 +111,7 @@ stages:
                 echo $PATH
                 echo "Hello World this works"
 
-  - job: CopyFiles
-    pool:
-      vmImage: 'Ubuntu-16.04'  
+  - job: CopyFiles 
     steps:
     # Needed 
     - task: CopyFilesOverSSH@0
