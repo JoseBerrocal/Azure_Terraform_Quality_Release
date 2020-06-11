@@ -132,6 +132,7 @@ stages:
                 pwd
                 pwd
                 echo "Hello World this works"
+                cd /home/casita/automatedtesting/selenium/
                 wget https://chromedriver.storage.googleapis.com/81.0.4044.138/chromedriver_linux64.zip
                 unzip chromedriver_linux64.zip
                 python3 /home/casita/automatedtesting/selenium/login.py
