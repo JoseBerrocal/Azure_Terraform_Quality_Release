@@ -120,7 +120,7 @@ stages:
               readyTimeout: '20000'
               overwrite: true
               flattenFolders: false
-
+              sourceFolder: ''
               #sourceFolder: # Optional
               #contents: '**' 
               #targetFolder: # Optional
