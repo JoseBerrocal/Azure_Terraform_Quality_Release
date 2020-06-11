@@ -68,7 +68,7 @@ stages:
       displayName: 'Copy files to VM'
       inputs:
         sshEndpoint: 'Connect to VM-Project'
-        contents: '**'
+        contents: '*/*/*py*'
         readyTimeout: '20000'
         overwrite: true
         flattenFolders: false
