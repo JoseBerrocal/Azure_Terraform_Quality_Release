@@ -112,20 +112,21 @@ stages:
                 echo "Hello World this works"
 
 
-  - deployment: CopyFiles
+  - job: CopyFiles
     displayName: Copy Files to VM
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-          - task: CopyFilesOverSSH@0
-            displayName: 'Copy files to VM'
-            inputs:
-              sshEndpoint: 'Connect to VM-Project'
-              sourceFolder: ''
-              targetFolder: ''
-              contents: '*/*/*py*'
-              readyTimeout: '20000'
+#    pool:
+ #     name: Hosted Ubuntu 1604
+    steps:
+    # Needed for Terraform VM deployment
+    - task: CopyFilesOverSSH@0
+      displayName: 'Copy files to VM'
+      inputs:
+        sshEndpoint: 'Connect to VM-Project'
+        sourceFolder: ''
+        targetFolder: ''
+        contents: '*/*/*py*'
+        readyTimeout: '20000'
+
 
 #The Selelium Test
   - deployment: SeleniumTest
