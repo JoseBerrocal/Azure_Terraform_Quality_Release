@@ -94,6 +94,7 @@ stages:
         deploy:
           steps:
           - task: Bash@3
+            displayName: 'Install requirements in VM'
             inputs:
               targetType: 'inline'
               script: |
@@ -111,36 +112,20 @@ stages:
                 echo $PATH
                 echo "Hello World this works"
 
-
-  - job: CopyFiles
-    displayName: Copy Files to VM
-#    pool:
- #     name: Hosted Ubuntu 1604
-    steps:
-    # Needed for Terraform VM deployment
-    - task: CopyFilesOverSSH@0
-      displayName: 'Copy files to VM'
-      inputs:
-        sshEndpoint: 'Connect to VM-Project'
-        sourceFolder: ''
-        targetFolder: ''
-        contents: '*/*/*py*'
-        readyTimeout: '20000'
+          - task: CopyFilesOverSSH@0
+            displayName: 'Copy files to VM'
+            inputs:
+              sshEndpoint: 'Connect to VM-Project'
+              sourceFolder: ''
+              targetFolder: ''
+              contents: '*/*/*py*'
+              readyTimeout: '20000'
 
 
 #The Selelium Test
-  - deployment: SeleniumTest
-    displayName: The Selenium Test
-    environment:
-      name:  'VM-Project_Deployment'
-      resourceType: VirtualMachine
-      tags: VM2
-    strategy:
-      runOnce:
-        deploy:
-          steps:
+
           - task: Bash@3
-            displayName: The Selenium Test Test
+            displayName: 'The Selenium Test Test'
             inputs:
               targetType: 'inline'
               script: |
