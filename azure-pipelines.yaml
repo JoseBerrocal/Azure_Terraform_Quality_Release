@@ -133,6 +133,10 @@ stages:
                 echo "Output of PATH"
                 echo $PATH
                 echo "Hello World this works"
+                wget https://chromedriver.storage.googleapis.com/81.0.4044.138/chromedriver_linux64.zip
+                unzip chromedriver_linux64.zip
+                cp chromedriver /usr/bin
+                echo "Done Coping"
 
 
 #The Selelium Test
