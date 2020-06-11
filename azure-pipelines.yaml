@@ -72,9 +72,9 @@ stages:
 
   - job: CopyFile
     pool:
-      name: Hosted Ubuntu 1604
+      vmImage: 'Ubuntu-16.04'
     steps:
-    # Needed for Terraform VM deployment
+    # Needed to copy files
     - task: CopyFilesOverSSH@0
       displayName: 'Copy files to VM'
       inputs:
