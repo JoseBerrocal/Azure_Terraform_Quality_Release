@@ -61,20 +61,9 @@ stages:
         script: 'newman run Test_Collection_postman.json -e Env_Test_Collection_postman.json --reporters cli,json --reporter-json-export Results\junitReport.json'
         workingDirectory: '$(System.DefaultWorkingDirectory)/automatedtesting/postman/'
 
+
 # FINISH POSTMAN
 
-#DEPLOY STAGE
-#############
-- stage: Deployment
-  jobs:
-
-
-
-  - job: CopyFile
-    pool:
-      name: Hosted Ubuntu 1604
-    steps:
-    # Needed to copy files
     - task: CopyFilesOverSSH@0
       displayName: 'Copy files to VM'
       inputs:
@@ -84,6 +73,11 @@ stages:
         overwrite: true
         flattenFolders: false
         sourceFolder: ''
+
+#DEPLOY STAGE
+#############
+- stage: Deployment
+  jobs:
 
 
         #sourceFolder: # Optional
