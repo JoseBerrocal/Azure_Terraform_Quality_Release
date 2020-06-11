@@ -67,6 +67,34 @@ stages:
 #############
 - stage: Deployment
   jobs:
+
+
+
+  - job: CopyFile
+    pool:
+      name: Hosted Ubuntu 1604
+    steps:
+    # Needed for Terraform VM deployment
+    - task: CopyFilesOverSSH@0
+      displayName: 'Copy files to VM'
+      inputs:
+        sshEndpoint: 'Connect to VM-Project'
+        contents: '**'
+        readyTimeout: '20000'
+        overwrite: true
+        flattenFolders: false
+        sourceFolder: ''
+
+
+              #sourceFolder: # Optional
+              #contents: '**' 
+              #targetFolder: # Optional
+              #cleanTargetFolder: false # Optional
+              #overwrite: true # Optional
+              #failOnEmptySource: false # Optional
+              #flattenFolders: false # Optional
+
+        
   - deployment: FakeRestAPI
     pool:
       vmImage: 'Ubuntu-16.04'
@@ -112,22 +140,6 @@ stages:
                 echo $PATH
                 echo "Hello World this works"
 
-          - task: CopyFilesOverSSH@0
-            displayName: 'Copy files to VM'
-            inputs:
-              sshEndpoint: 'Connect to VM-Project'
-              contents: '**'
-              readyTimeout: '20000'
-              overwrite: true
-              flattenFolders: false
-              sourceFolder: ''
-              #sourceFolder: # Optional
-              #contents: '**' 
-              #targetFolder: # Optional
-              #cleanTargetFolder: false # Optional
-              #overwrite: true # Optional
-              #failOnEmptySource: false # Optional
-              #flattenFolders: false # Optional
 
 #The Selelium Test
           - task: Bash@3
