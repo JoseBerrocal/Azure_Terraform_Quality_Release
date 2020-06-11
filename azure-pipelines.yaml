@@ -86,13 +86,13 @@ stages:
         sourceFolder: ''
 
 
-              #sourceFolder: # Optional
-              #contents: '**' 
-              #targetFolder: # Optional
-              #cleanTargetFolder: false # Optional
-              #overwrite: true # Optional
-              #failOnEmptySource: false # Optional
-              #flattenFolders: false # Optional
+        #sourceFolder: # Optional
+        #contents: '**' 
+        #targetFolder: # Optional
+        #cleanTargetFolder: false # Optional
+        #overwrite: true # Optional
+        #failOnEmptySource: false # Optional
+        #flattenFolders: false # Optional
 
         
   - deployment: FakeRestAPI
