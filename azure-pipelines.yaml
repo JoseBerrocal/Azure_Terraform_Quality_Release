@@ -142,7 +142,7 @@ stages:
             inputs:
               archiveFilePatterns: '*chromedriver_linux64.zip'
               destinationFolder: ''
-              cleanDestinationFolder: false
+              cleanDestinationFolder: true
 
           - task: Bash@3
             displayName: 'Finish requirements in VM'
