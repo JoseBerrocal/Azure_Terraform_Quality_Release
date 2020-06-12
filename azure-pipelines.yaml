@@ -173,9 +173,12 @@ stages:
                 #unzip chromedriver_linux64.zip
                 #cat /home/casita/automatedtesting/selenium/login.py
                 python3 /home/casita/automatedtesting/selenium/login.py
-                
-#The Jmeter Test
 
 
-          - task: AlexandreGattiker.jmeter-tasks.custom-jmeter-installer-task.JMeterInstaller@0
-            displayName: 'Install JMeter 5.2.1'
+  #The Jmeter Test
+  - job: Jmeter
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - task: AlexandreGattiker.jmeter-tasks.custom-jmeter-installer-task.JMeterInstaller@0
+      displayName: 'Install JMeter 5.2.1'
