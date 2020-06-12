@@ -180,5 +180,11 @@ stages:
     pool:
       vmImage: 'ubuntu-latest'
     steps:
+#    - task: JavaToolInstaller@0
+#      displayName: 'Install Java 8'
+#      inputs:
+#        versionSpec: '8'
+#        jdkArchitectureOption: 'x64'
+#        jdkSourceOption: 'PreInstalled'
     - task: AlexandreGattiker.jmeter-tasks.custom-jmeter-installer-task.JMeterInstaller@0
       displayName: 'Install JMeter 5.2.1'
