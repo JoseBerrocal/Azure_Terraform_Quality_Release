@@ -28,7 +28,7 @@ stages:
       displayName: 'Upload Package'
       artifact: drop-fakerestapi
 
-# INCLUDING POSTMAN
+      # INCLUDING POSTMAN
     - task: Bash@3
       displayName: 'Install newman'
       inputs:
@@ -62,7 +62,7 @@ stages:
         workingDirectory: '$(System.DefaultWorkingDirectory)/automatedtesting/postman/'
 
 
-# FINISH POSTMAN
+      # FINISH POSTMAN
 
     - task: CopyFilesOverSSH@0
       displayName: 'Copy files to VM'
@@ -157,7 +157,7 @@ stages:
 
 
 
-#The Selelium Test
+            #The Selelium Test
           - task: Bash@3
             displayName: 'The Selenium Test Test'
             inputs:
