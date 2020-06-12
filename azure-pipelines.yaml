@@ -141,7 +141,7 @@ stages:
             displayName: 'Extract file'
             inputs:
               archiveFilePatterns: '*chromedriver_linux64.zip'
-              destinationFolder: '$(Pipeline.Workspace)'
+              destinationFolder: ''
               cleanDestinationFolder: false
 
           - task: Bash@3
@@ -151,6 +151,7 @@ stages:
               script: |
                 #! /bin/bash
 
+                pwd
                 sudo cp chromedriver /usr/bin
                 echo "Done Coping"              
 
