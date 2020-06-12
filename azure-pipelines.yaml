@@ -135,9 +135,26 @@ stages:
                 echo "Hello World this works"
                 sudo rm -rf chromedriver_linux64.zip*
                 wget "https://chromedriver.storage.googleapis.com/81.0.4044.138/chromedriver_linux64.zip"
-                unzip "chromedriver_linux64.zip"
-                cp chromedriver /usr/bin
-                echo "Done Coping"
+
+
+          - task: ExtractFiles@1
+            displayName: 'Extract file'
+            inputs:
+              archiveFilePatterns: '*chromedriver_linux64.zip'
+              destinationFolder: '$(Pipeline.Workspace)'
+              cleanDestinationFolder: false
+
+          - task: Bash@3
+            displayName: 'Finish requirements in VM'
+            inputs:
+              targetType: 'inline'
+              script: |
+                #! /bin/bash
+
+                sudo cp chromedriver /usr/bin
+                echo "Done Coping"              
+
+
 
 #The Selelium Test
           - task: Bash@3
