@@ -70,7 +70,8 @@ stages:
           pwd
           echo "$(System.DefaultWorkingDirectory)"
           locate junitReport.xml
-          ls -lrthaR            
+          ls -lrthaR
+          cat $(System.DefaultWorkingDirectory)/automatedtesting/postman/ResultsjunitReport.xml            
 
 
     - task: PublishTestResults@2
@@ -80,6 +81,7 @@ stages:
         testResultsFiles: '**ResultsjunitReport*.xml'
         searchFolder: '$(System.DefaultWorkingDirectory)/automatedtesting/postman'
         testRunTitle: 'Result Postman'
+
 
 
       # FINISH POSTMAN
