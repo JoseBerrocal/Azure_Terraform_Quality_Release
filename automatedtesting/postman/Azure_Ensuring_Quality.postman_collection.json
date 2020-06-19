@@ -126,7 +126,19 @@
 			"response": []
 		},
 		{
-			"name": "Put an Activity",
+			"name": "Update an Activity",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3a515150-025a-413c-a3cd-bd527a8819bd",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -139,6 +151,43 @@
 						}
 					}
 				},
+				"url": {
+					"raw": "{{url}}/api/Activities/{{ID}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"Activities",
+						"{{ID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check update in specific Activity - Data Validation Test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "739275f7-638c-48e2-bde9-19ad638d397e",
+						"exec": [
+							"var var_title = pm.response.json().Title;",
+							"if(var_title == \"Activity 29\"){",
+							"    pm.test(\"The activity was not updated - Update an Activity FAIL\", function () {",
+							"        pm.expect(pm.response.text()).to.include(var_title) });",
+							"}else{",
+							"    pm.test(\"The activity was updated\");",
+							"};"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
 				"url": {
 					"raw": "{{url}}/api/Activities/{{ID}}",
 					"host": [
