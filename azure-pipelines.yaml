@@ -58,7 +58,7 @@ stages:
     - task: CmdLine@2
       displayName: 'Run Postman'
       inputs:
-        script: 'newman run Azure_Ensuring_Quality.postman_collection.json -e Env_Azure_Ensuring_Quality.postman_environment.json --reporters cli,junit --reporter-junit-export Results\junitReport.xml'
+        script: 'newman run Azure_Ensuring_Quality.postman_collection.json -e Env_Azure_Ensuring_Quality.postman_environment.json --reporters cli,junit --reporter-junit-export ResultsjunitReport.xml'
         workingDirectory: '$(System.DefaultWorkingDirectory)/automatedtesting/postman/'
 
     - task: Bash@3
@@ -77,8 +77,8 @@ stages:
       displayName: 'Publish Test Result Postman'
       inputs:
         testResultsFormat: 'JUnit'
-        testResultsFiles: 'junitReport.xml'
-        searchFolder: '$(System.DefaultWorkingDirectory)/automatedtesting/postman/Results'
+        testResultsFiles: 'ResultsjunitReport.xml'
+        searchFolder: '$(System.DefaultWorkingDirectory)/automatedtesting/postman'
         testRunTitle: 'Result Postman'
 
 
