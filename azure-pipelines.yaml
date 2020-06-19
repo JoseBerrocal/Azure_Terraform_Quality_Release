@@ -61,6 +61,18 @@ stages:
         script: 'newman run Azure_Ensuring_Quality.postman_collection.json -e Env_Azure_Ensuring_Quality.postman_environment.json --reporters cli,json --reporter-junit-export Results\junitReport.xml'
         workingDirectory: '$(System.DefaultWorkingDirectory)/automatedtesting/postman/'
 
+    - task: Bash@3
+      displayName: 'Searching for some data'
+      inputs:
+        targetType: 'inline'
+        script: |
+          #! /bin/bash
+          pwd
+          echo "$(System.DefaultWorkingDirectory)"
+          locate junitReport.xml
+          ls -lrthaR            
+
+
     - task: PublishTestResults@2
       displayName: 'Publish Test Result Postman'
       inputs:
@@ -68,6 +80,7 @@ stages:
         testResultsFiles: 'junitReport.xml'
         searchFolder: '$(System.DefaultWorkingDirectory)/automatedtesting/postman/Results'
         testRunTitle: 'Result Postman'
+
 
       # FINISH POSTMAN
 
