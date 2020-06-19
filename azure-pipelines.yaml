@@ -77,7 +77,7 @@ stages:
       displayName: 'Publish Test Result Postman'
       inputs:
         testResultsFormat: 'JUnit'
-        testResultsFiles: 'ResultsjunitReport.xml'
+        testResultsFiles: '**ResultsjunitReport*.xml'
         searchFolder: '$(System.DefaultWorkingDirectory)/automatedtesting/postman'
         testRunTitle: 'Result Postman'
 
