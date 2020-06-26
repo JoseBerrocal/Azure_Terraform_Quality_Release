@@ -190,6 +190,7 @@ stages:
                 pwd
                 pwd
                 echo "Hello World this works"
+                find / -name login.py
                 ls -rthaR
                 cd /home/casita/automatedtesting/selenium/
                 #wget https://chromedriver.storage.googleapis.com/81.0.4044.138/chromedriver_linux64.zip
