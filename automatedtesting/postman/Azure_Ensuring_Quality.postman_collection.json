@@ -7,6 +7,20 @@
 	"item": [
 		{
 			"name": "Get all Activities",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fdaca4a9-ad3d-41c7-bd83-c3dd98122824",
+						"exec": [
+							"pm.test(\"The output of the Get All Activities is correct\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Activity 10\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -25,6 +39,20 @@
 		},
 		{
 			"name": "Create an Activitie",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "adf531cb-d212-4dd1-a317-715c34493bbd",
+						"exec": [
+							"pm.test(\"The output from the Create an Activity was correct\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Activity 31\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -52,6 +80,20 @@
 		},
 		{
 			"name": "Delete an Activity",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a1b705e5-e425-4115-adea-e6551adcf764",
+						"exec": [
+							"pm.test(\"We got status 200 from deleting an specifir Activity\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "DELETE",
 				"header": [],
@@ -80,6 +122,20 @@
 		},
 		{
 			"name": "Get an specific Activity",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8f0afffb-2b5b-4105-ba29-e9f8363db86f",
+						"exec": [
+							"pm.test(\"The output of an Specific Activities is correct - Test is Activity 29\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Activity 29\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -133,7 +189,9 @@
 					"script": {
 						"id": "3a515150-025a-413c-a3cd-bd527a8819bd",
 						"exec": [
-							""
+							"pm.test(\"The output of Update an Specific Activities was sent correctly\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Update Activity 29\");",
+							"});"
 						],
 						"type": "text/javascript"
 					}
