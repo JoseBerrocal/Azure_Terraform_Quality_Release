@@ -81,6 +81,7 @@ stages:
         testResultsFiles: 'ResultsjunitReport.xml'
         searchFolder: '$(System.DefaultWorkingDirectory)/automatedtesting/postman'
         testRunTitle: 'Result Postman'
+        mergeTestResults: true
 
 
 
