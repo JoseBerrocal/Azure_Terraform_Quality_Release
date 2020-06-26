@@ -35,44 +35,12 @@ stages:
         targetType: 'inline'
         script: |
           sudo npm install -g newman
-          pwd
-
-    - task: Bash@3
-      displayName: 'get some values'
-      inputs:
-        targetType: 'inline'
-        script: |
-          echo "Aqui esta ubicado el archivo json"
-          locate StarterAPIs.json
-          echo "El valor de la carpeta build"
-          echo $(Build.SourcesDirectory)
-          echo "El valor de la carpeta system default direcotry"
-          echo $(System.DefaultWorkingDirectory)
-          locate _Azure_Project_Quality_Release.git
-          echo "Aqui esta la carpeta del repositorio"
-          pwd
-          echo "El pwd"
-          ls -lrthaR
-        workingDirectory: '$(System.DefaultWorkingDirectory)'
 
     - task: CmdLine@2
       displayName: 'Run Postman'
       inputs:
         script: 'newman run Azure_Ensuring_Quality.postman_collection.json -e Env_Azure_Ensuring_Quality.postman_environment.json --reporters cli,junit --reporter-junit-export ResultsjunitReport.xml'
         workingDirectory: '$(System.DefaultWorkingDirectory)/automatedtesting/postman/'
-
-    - task: Bash@3
-      displayName: 'Searching for some data'
-      inputs:
-        targetType: 'inline'
-        script: |
-          #! /bin/bash
-          pwd
-          echo "$(System.DefaultWorkingDirectory)"
-          locate junitReport.xml
-          ls -lrthaR
-          cat $(System.DefaultWorkingDirectory)/automatedtesting/postman/ResultsjunitReport.xml            
-
 
     - task: PublishTestResults@2
       displayName: 'Publish Test Result Postman'
@@ -82,6 +50,7 @@ stages:
         searchFolder: '$(System.DefaultWorkingDirectory)/automatedtesting/postman'
         testRunTitle: 'Result Postman'
         mergeTestResults: true
+
 
 
 
@@ -102,16 +71,6 @@ stages:
 #############
 - stage: Deployment
   jobs:
-
-
-        #sourceFolder: # Optional
-        #contents: '**' 
-        #targetFolder: # Optional
-        #cleanTargetFolder: false # Optional
-        #overwrite: true # Optional
-        #failOnEmptySource: false # Optional
-        #flattenFolders: false # Optional
-
         
   - deployment: FakeRestAPI
     pool:
@@ -153,13 +112,8 @@ stages:
                 echo "Chromium-Browser Installed"
                 pip3 install selenium
                 echo "Selenium Installed"
-                export PATH=$PATH:some/path
-                echo "Output of PATH"
-                echo $PATH
-                echo "Hello World this works"
                 sudo rm -rf chromedriver*
                 wget "https://chromedriver.storage.googleapis.com/83.0.4103.39/chromedriver_linux64.zip"
-
 
           - task: ExtractFiles@1
             displayName: 'Extract file'
@@ -175,11 +129,8 @@ stages:
               script: |
                 #! /bin/bash
 
-                pwd
                 sudo cp chromedriver /usr/bin
                 echo "Done Coping"              
-
-
 
             #The Selelium Test
           - task: Bash@3
@@ -189,12 +140,7 @@ stages:
               script: |
                 #! /bin/bash
               
-                pwd
-                echo "Hello World this works"
                 cd /home/casita/automatedtesting/selenium/
-                #wget https://chromedriver.storage.googleapis.com/81.0.4044.138/chromedriver_linux64.zip
-                #unzip chromedriver_linux64.zip
-                #cat /home/casita/automatedtesting/selenium/login.py
                 python3 /home/casita/automatedtesting/selenium/login.py
 
 
@@ -203,12 +149,6 @@ stages:
     pool:
       vmImage: 'ubuntu-latest'
     steps:
-#    - task: JavaToolInstaller@0
-#      displayName: 'Install Java 8'
-#      inputs:
-#        versionSpec: '8'
-#        jdkArchitectureOption: 'x64'
-#        jdkSourceOption: 'PreInstalled'
     - task: AlexandreGattiker.jmeter-tasks.custom-jmeter-installer-task.JMeterInstaller@0
       displayName: 'Install JMeter 5.2.1'
 
@@ -217,5 +157,4 @@ stages:
       inputs:
         targetType: 'inline'
         script: |
-          locate jmeter
           jmeter -n -t automatedtesting/jmeter/activities.jmx -Jresdir=automatedtesting/jmeter/pages.csv
