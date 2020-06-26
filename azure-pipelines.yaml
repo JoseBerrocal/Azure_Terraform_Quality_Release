@@ -43,7 +43,7 @@ stages:
         workingDirectory: '$(System.DefaultWorkingDirectory)/automatedtesting/postman/'
 
     - task: PublishTestResults@2
-      displayName: 'Publish Test Result Postman'
+      displayName: 'Publish Test Result Postman -  Regression test suite and Data Validation test suite'
       inputs:
         testResultsFormat: 'JUnit'
         testResultsFiles: 'ResultsjunitReport.xml'
