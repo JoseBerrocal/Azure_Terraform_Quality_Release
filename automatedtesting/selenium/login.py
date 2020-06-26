@@ -23,7 +23,7 @@ def login (user, password):
         print ('We are selecting ' + value.text)
         driver.find_element_by_css_selector("button[class='btn_primary btn_inventory']").click()
         time.sleep(1)
-    print ('All 6 clothes are in the basket.')
+    print ('All 6666 clothes are in the basket.')
 
     driver.find_element_by_css_selector("svg[class='svg-inline--fa fa-shopping-cart fa-w-18 fa-3x ']").click()
     time.sleep(2)
