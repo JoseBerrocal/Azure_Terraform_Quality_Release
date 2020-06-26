@@ -79,7 +79,7 @@ stages:
       inputs:
         testResultsFormat: 'JUnit'
         testResultsFiles: 'ResultsjunitReport.xml'
-        searchFolder: '$(System.DefaultWorkingDirectory)/automatedtesting/postman/'
+        searchFolder: '$(System.DefaultWorkingDirectory)/automatedtesting/postman'
         testRunTitle: 'Result Postman'
 
 
